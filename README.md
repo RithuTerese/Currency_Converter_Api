@@ -27,7 +27,6 @@ currencies are involved.
 - [Testing](#testing)
 - [Logging and Monitoring](#logging-and-monitoring)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -44,6 +43,7 @@ currencies are involved.
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or any compatible IDE
 - [Seq](https://datalust.co/seq) (optional, for structured log storage)
+- [Jaeger](https://www.jaegertracing.io/download/) (for tracing)
 
 ## Installation
 
@@ -52,20 +52,62 @@ currencies are involved.
    ```bash
    git clone https://github.com/yourusername/ExchangeRatesAPI.git
 
-2.Configuration
+## Configuration
 
   App Settings:
   -appsettings.json.
   
   Launch Settings:
-  
-  The Properties/launchSettings.json file defines multiple environments:
-  
-  Development: Default environment.
-  
-  Test: For testing purposes.
-  
-  Production: For deployment.
-  
-  Ensure the applicationUrl and environmentVariables are set appropriately for each profile.
+  -The Properties/launchSettings.json file defines multiple environments:
+  -Development: Default environment.
+  -Test: For testing purposes.
+  -Production: For deployment.
 
+## Usage
+Running the Application:
+For the Development environment:
+dotnet run --launch-profile "http"
+
+For the Test environment:
+dotnet run --launch-profile "Test"
+
+For the Production environment:
+dotnet run --launch-profile "https"
+
+Accessing Swagger UI:
+
+Once the application is running, navigate to:
+http://localhost:{port}/swagger
+Replace {port} with the port number specified in the launch profile.
+
+## Testing
+To run tests:
+
+dotnet test
+Ensure that the test environment is configured correctly in the launchSettings.json.
+
+Temporary login :
+Username : user or admin
+Password : password
+
+Api Version : 1.0 
+Providername : frankfurter or mock
+
+Logging and Monitoring
+Serilog:
+
+Logs are configured to output to the console and a rolling file (Logs/applog.txt). Ensure the Serilog settings in appsettings.json are configured as desired.
+
+OpenTelemetry:
+
+Traces are exported to:
+
+Jaeger: http://localhost:4317
+
+Ensure these services are running and accessible.
+
+## Contributing
+1. Implement Health Checks
+Implement health checks to monitor the status of dependencies like external APIs,Db etc. We can set alerts if the health is on risk.
+2.Connect to Database
+In this project I haven't used the entity framework/Db . Username and password is hardcorded for testing purpose.After connecting to db , real scenarios can be executed ​
