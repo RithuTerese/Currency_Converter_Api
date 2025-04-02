@@ -8,8 +8,11 @@ ASP.NET Core, ensuring high performance, security, and resilience.
 
 Endpoints 
 1 Retrieve Latest Exchange Rates 
+
 ● Fetch the latest exchange rates for a specific base currency (e.g., EUR). 
+
 2 Currency Conversion 
+
 ● Convert amounts between different currencies. 
 ● Exclude TRY, PLN, THB, and MXN from the response and return a bad request if these 
 currencies are involved. 
