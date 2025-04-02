@@ -1,1 +1,1 @@
-# ExchangeRatesAPIToken
+havsfijdgiAGSDGIASD
